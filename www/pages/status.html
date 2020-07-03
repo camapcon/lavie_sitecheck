@@ -1,0 +1,84 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="title">Tổng quan</div>
+        <div class="right">
+          <a href="#" class="link icon-only panel-open" data-panel="right">
+            <i class="icon f7-icons ios-only">menu</i>
+            <i class="icon material-icons md-only">menu</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="page-content bg-gradient">
+      <div class="block" style="text-align:center; padding-bottom: 0px; width: 100%;">
+        <div class="row" style="text-align:center; margin: auto; width: 200px;">
+          <img src="img/logo.png?v=1" width="200"/>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content card-content-padding">
+          <div class="list media-list no-ios-edges">
+              <ul>
+                  <li class="item-content">
+                      <div class="item-media"><i class="f7-icons">person</i></div>
+                      <div class="item-inner">
+                          <div class="item-title-row">
+                              <div class="item-title">Tên PG</div>
+                          </div>
+                          <div class="item-subtitle">{{fullname}}</div>
+                      </div>
+                  </li>
+                  <li class="item-content">
+                      <div class="item-media"><i class="f7-icons">calendar</i></div>
+                      <div class="item-inner">
+                          <div class="item-title-row">
+                              <div class="item-title">Ngày làm việc</div>
+                          </div>
+                          <div class="item-subtitle">{{workday}}</div>
+                      </div>
+                  </li>
+                  <li class="item-content">
+                      <div class="item-media"><i class="f7-icons">world</i></div>
+                      <div class="item-inner">
+                          <div class="item-title-row">
+                              <div class="item-title">Địa điểm</div>
+                          </div>
+                          <div class="item-subtitle">{{cityname}}</div>
+                      </div>
+                  </li>
+                  <li class="item-content">
+                      <div class="item-media"><i class="f7-icons">check_round</i></div>
+                      <div class="item-inner">
+                          <div class="item-title-row">
+                              <div class="item-title">Giờ đăng nhập</div>
+                          </div>
+                          <div class="item-subtitle">{{loggedin}}</div>
+                      </div>
+                  </li>
+                  <li class="item-content">
+                      <div class="item-media"><i class="f7-icons">time</i></div>
+                      <div class="item-inner">
+                          <div class="item-title-row">
+                              <div class="item-title">Giờ checkin</div>
+                          </div>
+                          <div class="item-subtitle">{{checkin}}</div>
+                      </div>
+                  </li>
+                  <li class="item-content">
+                      <div class="item-media"><i class="f7-icons">time_fill</i></div>
+                      <div class="item-inner">
+                          <div class="item-title-row">
+                              <div class="item-title">Giờ checkout</div>
+                          </div>
+                          <div class="item-subtitle">{{checkout}}</div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,104 @@
+<template>
+  <div class="page" data-name="login">
+    <div class="navbar" style="display: none;">
+      <div class="navbar-inner">
+        <div class="right">
+          <a href="#" class="link icon-only panel-open" data-panel="right">
+            <i class="icon f7-icons ios-only">menu</i>
+            <i class="icon material-icons md-only">menu</i>
+          </a>
+        </div>
+        <div class="title sliding">Đăng nhập</div>
+      </div>
+    </div>
+    <div class="page-content" style="padding: 10px 50px 50px 50px; background: #fff;">
+      <div class="block" style="text-align:center; padding-bottom: 20px; width: 100%;">
+        <div class="row" style="text-align:center; margin: auto; width: 200px;">
+          <img src="img/logo.jpg?v=1" width="200"/>
+        </div>
+      </div>
+      <div class="list no-hairlines-md">
+        <ul>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Tên đăng nhập</div>
+              <div class="item-input-wrap">
+                <input id="username" type="text" placeholder="Nhập username dành cho PG">
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Mật khẩu</div>
+              <div class="item-input-wrap">
+                <input id="password" type="password" placeholder="********">
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="block">
+        <div class="row">
+          <button class="col button button-fill button-big button-round" @click="login">Đăng nhập</button>
+        </div>
+      </div>
+      <div class="list simple-list">
+        <ul>
+          <li>
+            <span>Ghi nhớ đăng nhập</span>
+            <label class="toggle toggle-init color-orange">
+            <input id="remember" type="checkbox" checked>
+            <span class="toggle-icon"></span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    // Component Methods
+    methods: {
+      login: function () {
+        var $ = this.$;
+        var app = this.$app;
+        var router = this.$router;
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var remember = $('#remember').prop('checked');
+        if(username=='' || password=='')
+        {
+          app.dialog.alert('Vui lòng nhập đủ tên và mật khẩu', 'Báo lỗi');
+          return;
+        }
+        app.request.post('http://lavie2.liveapps.top/index.php/app/login', { username:username, password:password, remember:remember?1:0 }, function (raw) {
+          try{
+            var json = JSON.parse(raw);
+            if(json.result=='success'){
+              window.localStorage.setItem("token", json.data.token);
+              window.localStorage.setItem("username", json.data.username);
+              window.localStorage.setItem("fullname", json.data.fullname);
+              window.localStorage.setItem("location", json.data.location);
+              window.localStorage.setItem("loggedin", json.data.loggedin);
+              router.navigate('/status/', {reloadAll:true, reloadCurrent:true, ignoreCache:true});
+              return;
+            }
+            if(json.result=='invalid'){
+              app.dialog.alert('Sai tên hoặc mật khẩu', 'Báo lỗi');
+              return;
+            }
+          }
+          catch(e){
+            app.dialog.alert('Vui lòng cập nhật phiên bản mới', 'Báo lỗi');
+          return;
+          }
+        },function(){
+          app.dialog.alert('Vui lòng kiểm tra lại kết nối', 'Báo lỗi');
+        });
+      },
+    }
+  }
+</script>

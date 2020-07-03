@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.lavie.pgapp2" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Lavie SiteCheck</name>
+    <description>Photo Report Mobile App for PG</description>
+    <author email="phu.tranthe@hotmail.com" href="http://htm.vn">HTM</author>
+    <content src="index.html" />
+  
+    <preference name="phonegap-version" value="cli-9.0.0" />
+    <preference name="target-device" value="handset" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <!--preference name="android-build-tool" value="gradle" /-->
+    <preference name="Fullscreen" value="true" />
+    
+    <!--plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" /-->
+    <plugin name="cordova-plugin-camera" spec="~2.3.1" />
+    <!--plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
+    <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1" />
+    <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />
+    <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
+    <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
+    <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
+    <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" /-->
+  
+    <!--plugin name="cordova-plugin-camera" spec="~4.0.3" /-->
+    <plugin name="cordova-plugin-console" spec="~1.1.0" />
+    <plugin name="cordova-plugin-file" spec="~6.0.1" />
+    <plugin name="cordova-plugin-file-transfer" spec="~1.7.1" />
+    <plugin name="cordova-plugin-geolocation" spec="~4.0.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.4.2" />
+    <plugin name="cordova-plugin-whitelist" source="npm" />
+    <plugin name="phonegap-plugin-barcodescanner" />
+  
+    <!--feature name="http://api.phonegap.com/1.0/battery"/>
+    <feature name="http://api.phonegap.com/1.0/contacts"/>
+    <feature name="http://api.phonegap.com/1.0/media"/>
+    <feature name="http://api.phonegap.com/1.0/notification"/-->
+    <preference name="permissions" value="none"/>
+    <feature name="http://api.phonegap.com/1.0/camera"/>
+    <feature name="http://api.phonegap.com/1.0/file"/>
+    <feature name="http://api.phonegap.com/1.0/geolocation"/>
+    <feature name="http://api.phonegap.com/1.0/network"/>
+  
+    <platform name="ios">
+      <icon src="res/icon/ios/icon-1024.png" width="1024" height="1024"/>
+      <icon src="res/icon/ios/icon-small.png" width="29" height="29"/>
+      <icon src="res/icon/ios/icon-small@2x.png" width="58" height="58"/>
+      <icon src="res/icon/ios/icon-small@3x.png" width="87" height="87"/>
+      <icon src="res/icon/ios/icon-small-40.png" width="40" height="40"/>
+      <icon src="res/icon/ios/icon-small-40@2x.png" width="80" height="80"/>
+      <icon src="res/icon/ios/icon-small-40@3x.png" width="120" height="120"/>
+      <icon src="res/icon/ios/icon-small-50.png" width="50" height="50"/>
+      <icon src="res/icon/ios/icon-small-50@2x.png" width="100" height="100"/>
+      <icon src="res/icon/ios/icon.png" width="57" height="57"/>
+      <icon src="res/icon/ios/icon@2x.png" width="114" height="114"/>
+      <icon src="res/icon/ios/icon-60.png" width="60" height="60"/>
+      <icon src="res/icon/ios/icon-60@2x.png" width="120" height="120"/>
+      <icon src="res/icon/ios/icon-60@3x.png" width="180" height="180"/>
+      <icon src="res/icon/ios/icon-72.png" width="72" height="72"/>
+      <icon src="res/icon/ios/icon-72@2x.png" width="144" height="144"/>
+      <icon src="res/icon/ios/icon-76.png" width="76" height="76"/>
+      <icon src="res/icon/ios/icon-76@2x.png" width="152" height="152"/>
+      <icon src="res/icon/ios/icon-167.png" width="167" height="167"/>
+      <icon src="res/icon/ios/icon-83.5@2x.png" width="167" height="167"/>
+       <!--  Storyboard portrait  -->
+      <splash src="res/screen/ios/Default@2x~iphone~anyany.png"/>
+      <splash src="res/screen/ios/Default@2x~iphone~comany.png"/>
+      <splash src="res/screen/ios/Default@3x~iphone~anyany.png"/>
+      <splash src="res/screen/ios/Default@3x~iphone~comany.png"/>
+      <splash src="res/screen/ios/Default@2x~ipad~anyany.png"/>
+      <splash src="res/screen/ios/Default@2x~ipad~comany.png"/>
+      
+      <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="overwrite">
+        <string>Need location access to checkin a working day, to make sure the user work in supermarkets.</string>
+      </edit-config>
+      <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="overwrite">
+        <string>To make sure the user stay in supermarkets after checkin and before checkout.</string>
+      </edit-config>
+      <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="overwrite">
+        <string>Need photo library to upload photos of sales activities.</string>
+      </edit-config>
+      <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="overwrite">
+        <string>Need camera to selfie and take photos of sales activities.</string>
+      </edit-config>
+      
+    </platform>
+    <platform name="android">
+      <preference name="android-minSdkVersion" value="19"/>
+      <preference name="android-targetSdkVersion" value="28"/>
+      <preference name="SplashMaintainAspectRatio" value="true"/>
+      <preference name="SplashShowOnlyFirstTime" value="false"/>
+      <icon density="ldpi" src="res/icon/android/ldpi.png"/>
+      <icon density="mdpi" src="res/icon/android/mdpi.png"/>
+      <icon density="hdpi" src="res/icon/android/hdpi.png"/>
+      <icon density="xhdpi" src="res/icon/android/xhdpi.png"/>
+      <icon density="xxhdpi" src="res/icon/android/xxhdpi.png"/>
+      <icon density="xxxhdpi" src="res/icon/android/xxxhdpi.png"/>
+       <!--  Portrait  -->
+      <splash density="port-ldpi" src="res/screen/android/splash-port-ldpi.png"/>
+      <splash density="port-mdpi" src="res/screen/android/splash-port-mdpi.png"/>
+      <splash density="port-hdpi" src="res/screen/android/splash-port-hdpi.png"/>
+      <splash density="port-xhdpi" src="res/screen/android/splash-port-xhdpi.png"/>
+      <splash density="port-xxhdpi" src="res/screen/android/splash-port-xxhdpi.png"/>
+      <splash density="port-xxxhdpi" src="res/screen/android/splash-port-xxxhdpi.png"/>
+      <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
+          <application android:networkSecurityConfig="@xml/network_security_config" />
+      </edit-config>
+      <resource-file src="res/xml/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
+    </platform>
+    
+    <access origin="*" />
+    <allow-navigation href="*"/>
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>

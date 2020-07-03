@@ -1,0 +1,269 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Quay lại</span>
+          </a>
+        </div>
+        <div class="title">Báo cáo hình ảnh</div>
+        <div class="right">
+          <a href="#" class="link icon-only panel-open" data-panel="right">
+            <i class="icon f7-icons ios-only">menu</i>
+            <i class="icon material-icons md-only">menu</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="page-content grid-report">
+
+      <div class="block">
+        <div class="list no-hairlines-md">
+          <ul>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Chương trình báo cáo</div>
+                <div class="item-input-wrap input-dropdown-wrap">
+                  <select id="programid">
+                    {{#each programs}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Tên cửa hàng</div>
+                <div class="item-input-wrap">
+                  <input id="location" type="text">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Địa chỉ</div>
+                <div class="item-input-wrap">
+                  <input id="address" type="text">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Quận/huyện</div>
+                <div class="item-input-wrap input-dropdown-wrap">
+                  <select id="district">
+                    {{#each districts}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">Chụp từ Camera</div>
+        <div class="card-content">
+          <div class="block" style="padding: 10px;">
+            <div class="row">
+              <div class="col"><a id="camera1" @click="camera(1);" class="image-holder"></a></div>
+              <div class="col"><a id="camera2" @click="camera(2);" class="image-holder"></a></div>
+              <div class="col"><a id="camera3" @click="camera(3);" class="image-holder"></a></div>
+            </div>
+            <div class="row">
+              <div class="col"><a id="camera4" @click="camera(4);" class="image-holder"></a></div>
+              <div class="col"><a id="camera5" @click="camera(5);" class="image-holder"></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Ghi chú</div>
+        <div class="list no-hairlines-md">
+          <ul>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Đánh giá</div>
+                <div class="item-input-wrap input-dropdown-wrap">
+                  <select id="eval">
+                    {{#each evals}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Lý do</div>
+                <div class="item-input-wrap input-dropdown-wrap">
+                  <select id="reason">
+                    {{#each reasons}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-input-wrap">
+                  <textarea id="note" placeholder="Nội dung ghi chú"></textarea>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <p class="row">
+          <button class="col button button-big button-raised button-fill" @click="submit">Gửi báo cáo</button>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    data: function() {
+      return {
+       uploaded: 0,
+       upload_total: 0,
+       programs: this.$app.data.preload.programs,
+       districts: this.$app.data.preload.districts,
+       evals: this.$app.data.preload.evals,
+       reasons: this.$app.data.preload.reasons
+      }
+    },
+    // Component Methods
+    methods: {
+      camera: function(index) {
+        var self = this;
+        var $ = this.$;
+        var app = this.$app;
+        var router = this.$router;
+        navigator.camera.getPicture(function(fileURI){
+          $('#camera'+index).html('<img src="'+fileURI+'" data-uri="'+fileURI+'" style="width:16vw; height:16vw;"/>');
+        }, function(message) {
+         app.dialog.alert('Không nhận được hình chụp từ Camera', 'Báo lỗi');
+        }, {
+           quality: 50,
+           correctOrientation: true,
+           destinationType: navigator.camera.DestinationType.FILE_URI,
+           sourceType: Camera.PictureSourceType.CAMERA
+        });
+      },
+      showToastBottom: function (text, closed) {
+        var self = this;
+        // Create toast
+        if (!self.toastBottom) {
+          self.toastBottom = self.$app.toast.create({
+            icon: self.$theme.ios ? '<i class="f7-icons">check</i>' : '<i class="material-icons">check</i>',
+            text: text,
+            position: 'center',
+            closeTimeout: 2000,
+            animate: true,
+            on:{
+              closed:closed
+            }
+          });
+        }
+        // Open it
+        self.toastBottom.open();
+      },
+      submit: function () {
+        var self = this;
+        var $ = this.$;
+        var app = this.$app;
+        var router = this.$router;
+        var token = localStorage.getItem("token");
+        self.uploaded = 0;
+        self.upload_total = $('img[data-uri]').length;
+        if(self.upload_total==0)
+        {
+          app.dialog.alert('Bạn chưa chọn hình nào', 'Báo lỗi');
+          return;
+        }
+        try{
+        self.upload(0);
+        }
+        catch(e){app.dialog.alert(e.message, 'Báo lỗi');}
+      },
+      upload: function(index){
+        var self = this;
+        var $ = this.$;
+        var app = this.$app;
+        var router = this.$router;
+        var files = $('img[data-uri]');
+        var fileURI = $(files[index]).data('uri');
+        self.uploaded++;
+        app.dialog.preloader('Đang gửi hình '+self.uploaded+'/'+self.upload_total);
+        var options = {
+          fileKey: "photo",
+          fileName: fileURI.substr(fileURI.lastIndexOf('/') + 1),
+          mimeType: "image/jpeg",
+          headers: { Connection: "close", token:token, programid:$('#programid').val(), note:$('#note').val(), location:$('#location').val(), address:$('#address').val(), district:$('#district').val(),eval:$('#eval').val(),reason:$('#reason').val() },
+          httpMethod: "POST",
+          chunkedMode: false
+        };
+        var ft = new FileTransfer();
+        ft.upload(fileURI, encodeURI("http://lavie2.liveapps.top/index.php/app/photo"), function(raw){
+          app.dialog.close();
+          if(raw.response!='success'){
+            app.dialog.alert(raw.response, 'Báo lỗi');
+            return;
+          }
+          if(raw.response=='invalid'){
+            app.dialog.alert('Phiên làm việc đã hết hạn', 'Báo lỗi', function(){
+              router.navigate('/login/');
+            });
+            return;
+          }
+          if(raw.response=='failed'){
+            app.dialog.alert('Không gửi được hình chụp từ Camera', 'Báo lỗi');
+            return;
+          }
+          //app.dialog.alert(raw.response);
+          if(raw.response=='success'){
+            app.dialog.close();
+            if(index+1 < self.upload_total)
+              self.upload(index+1);
+            else{
+              self.showToastBottom('Báo cáo thành công', function(){
+                router.back('/status/', {reloadAll:true, ignoreCache:true});
+              });
+            }
+          }
+        }, function(error){
+          app.dialog.close();
+          app.dialog.alert('Không gửi được hình (' + error.code + ')', 'Báo lỗi');
+          /*
+          app.dialog.alert(error.code, 'Code');
+          app.dialog.alert(error.source, 'Source');
+          app.dialog.alert(error.target, 'Target');
+          app.dialog.alert(error.exception, 'Exception');
+          */
+        }, options, true);
+      }
+    },
+    on: {
+      pageBeforeOut: function () {
+        var self = this;
+        self.$app.toast.close();
+      },
+      pageBeforeRemove: function () {
+        var self = this;
+        // Destroy toasts when page removed
+        if (self.toastBottom) self.toastBottom.destroy();
+      }
+    }
+  }
+</script>

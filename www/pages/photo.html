@@ -38,24 +38,8 @@
               <div class="item-inner">
                 <div class="item-title item-label">Tên cửa hàng</div>
                 <div class="item-input-wrap">
-                  <input id="location" type="text">
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-label">Địa chỉ</div>
-                <div class="item-input-wrap">
-                  <input id="address" type="text">
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-label">Quận/huyện</div>
-                <div class="item-input-wrap input-dropdown-wrap">
-                  <select id="district">
-                    {{#each districts}}
+                  <select id="locationid">
+                    {{#each locations}}
                     <option value="{{this.id}}">{{this.name}}</option>
                     {{/each}}
                   </select>
@@ -138,9 +122,9 @@
        uploaded: 0,
        upload_total: 0,
        programs: this.$app.data.preload.programs,
-       districts: this.$app.data.preload.districts,
        evals: this.$app.data.preload.evals,
-       reasons: this.$app.data.preload.reasons
+       reasons: this.$app.data.preload.reasons,
+       locations: this.$app.data.preload.locations
       }
     },
     // Component Methods
@@ -210,7 +194,7 @@
           fileKey: "photo",
           fileName: fileURI.substr(fileURI.lastIndexOf('/') + 1),
           mimeType: "image/jpeg",
-          headers: { Connection: "close", token:token, programid:$('#programid').val(), note:$('#note').val(), location:$('#location').val(), address:$('#address').val(), district:$('#district').val(),eval:$('#eval').val(),reason:$('#reason').val() },
+          headers: { Connection: "close", token:token, programid:$('#programid').val(), note:$('#note').val(), locationid:$('#locationid').val(),eval:$('#eval').val(),reason:$('#reason').val() },
           httpMethod: "POST",
           chunkedMode: false
         };

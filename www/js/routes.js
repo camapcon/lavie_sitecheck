@@ -85,12 +85,6 @@ var routes = [
         }
         try{
           var json = JSON.parse(raw);
-          app.data.checkin = json.checkin;
-          app.data.checkout = json.checkout;
-          app.data.preload.city = json.city;
-          app.data.preload.districts = json.districts;
-          app.data.preload.evals = json.evals;
-          app.data.preload.reasons = json.reasons;
           resolve(
             {
               componentUrl: './pages/status.html',
@@ -100,8 +94,9 @@ var routes = [
               context: {
                 fullname: localStorage.getItem("fullname"),
                 loggedin: localStorage.getItem("loggedin"),
+                month_summary: json.month_summary,
                 workday:json.workday,
-                cityname:json.cityname
+                region:localStorage.getItem("region")
               }
             }
           );

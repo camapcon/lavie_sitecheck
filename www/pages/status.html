@@ -25,7 +25,7 @@
                       <div class="item-media"><i class="f7-icons">person</i></div>
                       <div class="item-inner">
                           <div class="item-title-row">
-                              <div class="item-title">Tên PG</div>
+                              <div class="item-title">Người thực hiện</div>
                           </div>
                           <div class="item-subtitle">{{fullname}}</div>
                       </div>
@@ -43,9 +43,9 @@
                       <div class="item-media"><i class="f7-icons">world</i></div>
                       <div class="item-inner">
                           <div class="item-title-row">
-                              <div class="item-title">Địa điểm</div>
+                              <div class="item-title">Khu vực</div>
                           </div>
-                          <div class="item-subtitle">{{cityname}}</div>
+                          <div class="item-subtitle">{{region}}</div>
                       </div>
                   </li>
                   <li class="item-content">
@@ -57,26 +57,31 @@
                           <div class="item-subtitle">{{loggedin}}</div>
                       </div>
                   </li>
-                  <li class="item-content">
-                      <div class="item-media"><i class="f7-icons">time</i></div>
-                      <div class="item-inner">
-                          <div class="item-title-row">
-                              <div class="item-title">Giờ checkin</div>
-                          </div>
-                          <div class="item-subtitle">{{checkin}}</div>
-                      </div>
-                  </li>
-                  <li class="item-content">
-                      <div class="item-media"><i class="f7-icons">time_fill</i></div>
-                      <div class="item-inner">
-                          <div class="item-title-row">
-                              <div class="item-title">Giờ checkout</div>
-                          </div>
-                          <div class="item-subtitle">{{checkout}}</div>
-                      </div>
-                  </li>
               </ul>
           </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Chỉ tiêu trong tháng</div>
+        <div class="card-content card-content-padding">
+          <table>
+            <thead>
+              <tr>
+                <th width="45%" class="label-cell" align="left">Địa điểm</th>
+                <th class="numeric-cell" align="center" style="white-space:nowrap;">Đã ghé</th>
+                <th class="numeric-cell" align="center" style="white-space:nowrap;">KPI</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each month_summary}}
+              <tr>
+                <td class="label-cell" align="left">{{this.name}}</td>
+                <td class="numeric-cell" align="center"><span class="badge color-blue">{{this.visited}}</span></td>
+                <td class="numeric-cell" align="center"><span class="badge color-blue">{{this.kpi}}</span></td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

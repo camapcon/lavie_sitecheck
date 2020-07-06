@@ -81,7 +81,7 @@
               window.localStorage.setItem("token", json.data.token);
               window.localStorage.setItem("username", json.data.username);
               window.localStorage.setItem("fullname", json.data.fullname);
-              window.localStorage.setItem("location", json.data.location);
+              window.localStorage.setItem("region", json.data.region);
               window.localStorage.setItem("loggedin", json.data.loggedin);
               router.navigate('/status/', {reloadAll:true, reloadCurrent:true, ignoreCache:true});
               return;

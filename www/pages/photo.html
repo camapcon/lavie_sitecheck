@@ -8,7 +8,7 @@
             <span class="ios-only">Quay lại</span>
           </a>
         </div>
-        <div class="title">Báo cáo hình ảnh</div>
+        <div class="title">Báo cáo</div>
         <div class="right">
           <a href="#" class="link icon-only panel-open" data-panel="right">
             <i class="icon f7-icons ios-only">menu</i>
@@ -17,32 +17,118 @@
         </div>
       </div>
     </div>
-    <div class="page-content grid-report">
-
+    
+    <div class="page-content grid-report">      
       <div class="block">
+        <div class="title"><strong>Thông tin địa chỉ</strong></div>
         <div class="list no-hairlines-md">
           <ul>
             <li class="item-content item-input">
               <div class="item-inner">
-                <div class="item-title item-label">Chương trình báo cáo</div>
-                <div class="item-input-wrap input-dropdown-wrap">
-                  <select id="programid">
-                    {{#each programs}}
-                    <option value="{{this.id}}">{{this.name}}</option>
-                    {{/each}}
-                  </select>
+                <div class="item-title item-label">Tên quán</div>
+                <div class="item-input-wrap">
+                  <input id="storename" type="text">
                 </div>
               </div>
             </li>
             <li class="item-content item-input">
               <div class="item-inner">
-                <div class="item-title item-label">Tên cửa hàng</div>
+                <div class="item-title item-label">Địa chỉ</div>
                 <div class="item-input-wrap">
-                  <select id="locationid">
-                    {{#each locations}}
-                    <option value="{{this.id}}">{{this.name}}</option>
-                    {{/each}}
+                  <input id="address" type="text">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Phường/xã</div>
+                <div class="item-input-wrap">
+                  <input id="ward" type="text">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Quận/huyện</div>
+                <div class="item-input-wrap">
+                  <input id="district" type="text">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Tỉnh/thành</div>
+                <div class="item-input-wrap">
+                  <select id="city">
+                      <option value="">Chọn...</option>
+                      {{#each cities}}
+                        <option value="{{this.name}}">{{this.name}}</option>
+                      {{/each}}
                   </select>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+        
+      <div class="block">
+        <div class="title"><strong>Chi tiết báo cáo</strong></div>
+        <div class="list no-hairlines-md">
+          <ul>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Tổng số bàn</div>
+                <div class="item-input-wrap">
+                  <input id="tables" type="tel">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Ước tính lượng tiêu thụ/tháng</div>
+                <div class="item-input-wrap">
+                  <input id="est" type="tel">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Giá trị đơn hàng</div>
+                <div class="item-input-wrap">
+                  <input id="order" type="tel">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Lý do (nếu không ký được đơn)</div>
+                <div class="item-input-wrap">
+                  <input id="reason" type="text">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="title"><strong>Dự kiến đơn hàng kế tiếp</strong></div>
+        <div class="list no-hairlines-md">
+          <ul>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Số lượng thùng</div>
+                <div class="item-input-wrap">
+                  <input id="nextqty" type="tel">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Ngày đặt hàng</div>
+                <div class="item-input-wrap">
+                  <input id="nextdate" type="text" placeholder="chọn ngày" readonly="readonly">
                 </div>
               </div>
             </li>
@@ -51,58 +137,16 @@
       </div>
       
       <div class="card">
-        <div class="card-header">Chụp từ Camera</div>
+        <div class="card-header">Chụp hình (2 tấm)</div>
         <div class="card-content">
           <div class="block" style="padding: 10px;">
             <div class="row">
               <div class="col"><a id="camera1" @click="camera(1);" class="image-holder"></a></div>
               <div class="col"><a id="camera2" @click="camera(2);" class="image-holder"></a></div>
-              <div class="col"><a id="camera3" @click="camera(3);" class="image-holder"></a></div>
-            </div>
-            <div class="row">
-              <div class="col"><a id="camera4" @click="camera(4);" class="image-holder"></a></div>
-              <div class="col"><a id="camera5" @click="camera(5);" class="image-holder"></a></div>
+              <div class="col"></div>
+              <div class="col"></div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="block">
-        <div class="block-title">Ghi chú</div>
-        <div class="list no-hairlines-md">
-          <ul>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-label">Đánh giá</div>
-                <div class="item-input-wrap input-dropdown-wrap">
-                  <select id="eval">
-                    {{#each evals}}
-                    <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-                  </select>
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-label">Lý do</div>
-                <div class="item-input-wrap input-dropdown-wrap">
-                  <select id="reason">
-                    {{#each reasons}}
-                    <option value="{{this}}">{{this}}</option>
-                    {{/each}}
-                  </select>
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-input-wrap">
-                  <textarea id="note" placeholder="Nội dung ghi chú"></textarea>
-                </div>
-              </div>
-            </li>
-          </ul>
         </div>
       </div>
 
@@ -121,10 +165,7 @@
       return {
        uploaded: 0,
        upload_total: 0,
-       programs: this.$app.data.preload.programs,
-       evals: this.$app.data.preload.evals,
-       reasons: this.$app.data.preload.reasons,
-       locations: this.$app.data.preload.locations
+       cities: this.$app.data.preload.cities
       }
     },
     // Component Methods
@@ -171,9 +212,40 @@
         var token = localStorage.getItem("token");
         self.uploaded = 0;
         self.upload_total = $('img[data-uri]').length;
-        if(self.upload_total==0)
-        {
-          app.dialog.alert('Bạn chưa chọn hình nào', 'Báo lỗi');
+        if($('#storename').val()==''){
+          app.dialog.alert('Phải nhập tên quán', 'Báo lỗi');
+          return;
+        }
+        if($('#address').val()==''){
+          app.dialog.alert('Phải nhập địa chỉ (số + tên đường)', 'Báo lỗi');
+          return;
+        }
+        if($('#ward').val()==''){
+          app.dialog.alert('Phải nhập tên phường / xã', 'Báo lỗi');
+          return;
+        }
+        if($('#district').val()==''){
+          app.dialog.alert('Phải nhập tên quận / huyện', 'Báo lỗi');
+          return;
+        }
+        if($('#city').val()==''){
+          app.dialog.alert('Phải chọn tỉnh / thành', 'Báo lỗi');
+          return;
+        }
+        if($('#tables').val()==''){
+          app.dialog.alert('Phải nhập số lượng bàn của quán', 'Báo lỗi');
+          return;
+        }
+        if($('#est').val()==''){
+          app.dialog.alert('Phải nhập ước tính tiêu thụ / tháng', 'Báo lỗi');
+          return;
+        }
+        if($('#order').val()=='' && $('#reason').val()==''){
+          app.dialog.alert('Phải nhập giá trị đơn hàng hoặc lý do không ký được đơn', 'Báo lỗi');
+          return;
+        }
+        if(self.upload_total < 2){
+          app.dialog.alert('Bạn phải chụp đủ 2 tấm hình', 'Báo lỗi');
           return;
         }
         try{
@@ -194,7 +266,7 @@
           fileKey: "photo",
           fileName: fileURI.substr(fileURI.lastIndexOf('/') + 1),
           mimeType: "image/jpeg",
-          headers: { Connection: "close", token:token, programid:$('#programid').val(), note:$('#note').val(), locationid:$('#locationid').val(),eval:$('#eval').val(),reason:$('#reason').val() },
+          headers: { Connection: "close", token:token, storename:$('#storename').val(), address:$('#address').val(), ward:$('#ward').val(),district:$('#district').val(),city:$('#city').val(),tables:$('#tables').val(),est:$('#est').val(),order:$('#order').val(),reason:$('#reason').val(),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
           httpMethod: "POST",
           chunkedMode: false
         };
@@ -247,6 +319,14 @@
         var self = this;
         // Destroy toasts when page removed
         if (self.toastBottom) self.toastBottom.destroy();
+      },
+      pageInit: function (e, page) {
+        var self = this;
+        var app = self.$app;
+        var $ = self.$;
+        var calendarDateFormat = app.calendar.create({
+          inputEl: '#nextdate'
+        });
       }
     }
   }

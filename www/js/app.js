@@ -16,6 +16,9 @@ var app = new Framework7({
   root: '#app',
   init: false,
   theme: theme,
+  calendar: {
+    dateFormat: 'yyyy-mm-dd'
+  },
   touch: {
     fastClicks: true
   },

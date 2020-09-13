@@ -94,7 +94,7 @@ var routes = [
               context: {
                 fullname: localStorage.getItem("fullname"),
                 loggedin: localStorage.getItem("loggedin"),
-                month_summary: json.month_summary,
+                summary: json.summary,
                 workday:json.workday,
                 region:localStorage.getItem("region")
               }

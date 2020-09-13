@@ -2,7 +2,7 @@
   <div class="page">
     <div class="navbar">
       <div class="navbar-inner sliding">
-        <div class="title">Tổng quan</div>
+        <div class="title">Lavie Seller</div>
         <div class="right">
           <a href="#" class="link icon-only panel-open" data-panel="right">
             <i class="icon f7-icons ios-only">menu</i>
@@ -25,7 +25,7 @@
                       <div class="item-media"><i class="f7-icons">person</i></div>
                       <div class="item-inner">
                           <div class="item-title-row">
-                              <div class="item-title">Người thực hiện</div>
+                              <div class="item-title">Nhân viên</div>
                           </div>
                           <div class="item-subtitle">{{fullname}}</div>
                       </div>
@@ -62,22 +62,24 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-header">Chỉ tiêu trong tháng</div>
+        <div class="card-header">Báo cáo hôm nay</div>
         <div class="card-content card-content-padding">
           <table>
             <thead>
               <tr>
-                <th width="45%" class="label-cell" align="left">Địa điểm</th>
-                <th class="numeric-cell" align="center" style="white-space:nowrap;">Đã ghé</th>
-                <th class="numeric-cell" align="center" style="white-space:nowrap;">KPI</th>
+                <th width="70%" class="label-cell" align="left">Tên quán</th>
+                <th class="numeric-cell" align="center" style="white-space:nowrap;">Đơn hàng</th>
               </tr>
             </thead>
             <tbody>
-              {{#each month_summary}}
+              {{#each summary}}
               <tr>
-                <td class="label-cell" align="left">{{this.name}}</td>
-                <td class="numeric-cell" align="center"><span class="badge color-blue">{{this.visited}}</span></td>
-                <td class="numeric-cell" align="center"><span class="badge color-blue">{{this.kpi}}</span></td>
+                <td class="label-cell" align="left">{{this.storename}}</td>
+                <td class="numeric-cell" align="center"><span class="badge color-blue">{{this.order}}</span></td>
+              </tr>
+              {{else}}
+              <tr>
+                <td class="label-cell text-color-red" colspan="2" align="left" style="padding:10px;">Chưa có báo cáo hôm nay</td>
               </tr>
               {{/each}}
             </tbody>

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.lavie.pgapp2" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Lavie SiteCheck</name>
-    <description>Photo Report Mobile App for PG</description>
+<widget id="com.lavie.pgapp2" version="1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Lavie Seller</name>
+    <description>Seller Report Mobile App</description>
     <author email="phu.tranthe@hotmail.com" href="http://htm.vn">HTM</author>
     <content src="index.html" />
   

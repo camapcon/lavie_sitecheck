@@ -94,7 +94,7 @@
             </li>
             <li class="item-content item-input">
               <div class="item-inner">
-                <div class="item-title item-label">Giá trị đơn hàng</div>
+                <div class="item-title item-label">Giá trị đơn hàng (thùng)</div>
                 <div class="item-input-wrap">
                   <input id="order1" type="tel" placeholder="Lavie 500ml"><br/>
                   <input id="order2" type="tel" placeholder="Viva 500ml"><br/>
@@ -112,6 +112,19 @@
                 </div>
               </div>
             </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-label">Quà tặng</div>
+                <div class="item-input-wrap">
+                  <select id="gift">
+                      <option value="">Chọn...</option>
+                      {{#each gifts}}
+                        <option value="{{this}}">{{this}}</option>
+                      {{/each}}
+                  </select>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -122,7 +135,7 @@
           <ul>
             <li class="item-content item-input">
               <div class="item-inner">
-                <div class="item-title item-label">Số lượng thùng</div>
+                <div class="item-title item-label">Số lượng (thùng)</div>
                 <div class="item-input-wrap">
                   <input id="nextqty" type="tel">
                 </div>
@@ -182,7 +195,8 @@
       return {
        uploaded: 0,
        upload_total: 0,
-       cities: this.$app.data.preload.cities
+       cities: this.$app.data.preload.cities,
+       gifts: this.$app.data.preload.gifts
       }
     },
     // Component Methods
@@ -320,7 +334,7 @@
           fileKey: "photo",
           fileName: fileURI.substr(fileURI.lastIndexOf('/') + 1),
           mimeType: "image/jpeg",
-          headers: { Connection: "close", token:token, storename:$('#storename').val(), address:$('#address').val(), ward:$('#ward').val(),district:$('#district').val(),city:$('#city').val(),tables:$('#tables').val(),est:$('#est').val(),order1:$('#order1').val(),order2:$('#order2').val(),order3:$('#order3').val(),order4:$('#order4').val(),order5:$('#order5').val(),reason:$('#reason').val(),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
+          headers: { Connection: "close", token:token, storename:$('#storename').val(), address:$('#address').val(), ward:$('#ward').val(),district:$('#district').val(),city:$('#city').val(),tables:$('#tables').val(),est:$('#est').val(),order1:$('#order1').val(),order2:$('#order2').val(),order3:$('#order3').val(),order4:$('#order4').val(),order5:$('#order5').val(),reason:$('#reason').val(),gift:$('#gift').val(),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
           httpMethod: "POST",
           chunkedMode: false
         };

@@ -96,7 +96,11 @@
               <div class="item-inner">
                 <div class="item-title item-label">Giá trị đơn hàng</div>
                 <div class="item-input-wrap">
-                  <input id="order" type="tel">
+                  <input id="order1" type="tel" placeholder="Lavie 500ml"><br/>
+                  <input id="order2" type="tel" placeholder="Viva 500ml"><br/>
+                  <input id="order3" type="tel" placeholder="Sparkling vị Chanh"><br/>
+                  <input id="order4" type="tel" placeholder="Sparkling vị Dâu"><br/>
+                  <input id="order5" type="tel" placeholder="Sparkling vị Đào">
                 </div>
               </div>
             </li>
@@ -149,6 +153,19 @@
           </div>
         </div>
       </div>
+      <div class="card">
+        <div class="card-header">hoặc chọn hình chụp sẵn</div>
+        <div class="card-content">
+          <div class="block" style="padding: 10px;">
+            <div class="row">
+              <div class="col"><a id="library1" @click="library(1);" class="image-holder lib"></a></div>
+              <div class="col"><a id="library2" @click="library(2);" class="image-holder lib"></a></div>
+              <div class="col"></div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="block">
         <p class="row">
@@ -184,6 +201,22 @@
            correctOrientation: true,
            destinationType: navigator.camera.DestinationType.FILE_URI,
            sourceType: Camera.PictureSourceType.CAMERA
+        });
+      },
+      library: function(index) {
+        var self = this;
+        var $ = this.$;
+        var app = this.$app;
+        var router = this.$router;
+        navigator.camera.getPicture(function(fileURI){
+          $('#library'+index).html('<img src="'+fileURI+'" data-uri="'+fileURI+'" style="width:16vw; height:16vw;"/>');
+        }, function(message) {
+         app.dialog.alert('Không nhận được hình chụp từ Camera', 'Báo lỗi');
+        }, {
+           quality: 50,
+           correctOrientation: true,
+           destinationType: navigator.camera.DestinationType.FILE_URI,
+           sourceType: Camera.PictureSourceType.PHOTOLIBRARY
         });
       },
       showToastBottom: function (text, closed) {
@@ -240,7 +273,28 @@
           app.dialog.alert('Phải nhập ước tính tiêu thụ / tháng', 'Báo lỗi');
           return;
         }
-        if($('#order').val()=='' && $('#reason').val()==''){
+        var _order = 0;
+        if($('#order1').val() != '' && isNaN($('#order1').val())){
+          app.dialog.alert('Giá trị đơn hàng chỉ được nhập số', 'Báo lỗi');
+          return;
+        }else{ _order += parseInt($('#order1').val()); }
+        if($('#order2').val() != '' && isNaN($('#order2').val())){
+          app.dialog.alert('Giá trị đơn hàng chỉ được nhập số', 'Báo lỗi');
+          return;
+        }else{ _order += parseInt($('#order2').val()); }
+        if($('#order3').val() != '' && isNaN($('#order3').val())){
+          app.dialog.alert('Giá trị đơn hàng chỉ được nhập số', 'Báo lỗi');
+          return;
+        }else{ _order += parseInt($('#order3').val()); }
+        if($('#order4').val() != '' && isNaN($('#order4').val())){
+          app.dialog.alert('Giá trị đơn hàng chỉ được nhập số', 'Báo lỗi');
+          return;
+        }else{ _order += parseInt($('#order4').val()); }
+        if($('#order5').val() != '' && isNaN($('#order5').val())){
+          app.dialog.alert('Giá trị đơn hàng chỉ được nhập số', 'Báo lỗi');
+          return;
+        }else{ _order += parseInt($('#order5').val()); }
+        if(_order==0 && $('#reason').val()==''){
           app.dialog.alert('Phải nhập giá trị đơn hàng hoặc lý do không ký được đơn', 'Báo lỗi');
           return;
         }
@@ -266,7 +320,7 @@
           fileKey: "photo",
           fileName: fileURI.substr(fileURI.lastIndexOf('/') + 1),
           mimeType: "image/jpeg",
-          headers: { Connection: "close", token:token, storename:$('#storename').val(), address:$('#address').val(), ward:$('#ward').val(),district:$('#district').val(),city:$('#city').val(),tables:$('#tables').val(),est:$('#est').val(),order:$('#order').val(),reason:$('#reason').val(),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
+          headers: { Connection: "close", token:token, storename:$('#storename').val(), address:$('#address').val(), ward:$('#ward').val(),district:$('#district').val(),city:$('#city').val(),tables:$('#tables').val(),est:$('#est').val(),order1:$('#order1').val(),order2:$('#order2').val(),order3:$('#order3').val(),order4:$('#order4').val(),order5:$('#order5').val(),reason:$('#reason').val(),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
           httpMethod: "POST",
           chunkedMode: false
         };

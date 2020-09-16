@@ -167,6 +167,14 @@
             </li>
             <li class="item-content item-input">
               <div class="item-inner">
+                <div class="item-title item-label">Thời gian giao hàng</div>
+                <div class="item-input-wrap">
+                  <input id="deliverydate" type="text">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
                 <div class="item-title item-label">Lý do (nếu không ký được đơn)</div>
                 <div class="item-input-wrap">
                   <input id="reason" type="text">
@@ -377,6 +385,10 @@
           app.dialog.alert('Phải nhập giá trị đơn hàng hoặc lý do không ký được đơn', 'Báo lỗi');
           return;
         }
+        if(_order>0 && $('#deliverydate').val()==''){
+          app.dialog.alert('Phải nhập thời gian giao hàng', 'Báo lỗi');
+          return;
+        }
         if(self.upload_total < 2){
           app.dialog.alert('Bạn phải chụp đủ 2 tấm hình', 'Báo lỗi');
           return;
@@ -399,7 +411,7 @@
           fileKey: "photo",
           fileName: fileURI.substr(fileURI.lastIndexOf('/') + 1),
           mimeType: "image/jpeg",
-          headers: { Connection: "close", token:token, storename:$('#storename').val(), address:$('#address').val(), ward:$('#ward').val(),district:$('#district').val(),city:$('#city').val(),phone:$('#phone').val(),tables:$('#tables').val(),est:$('#est').val(),order1:$('#order1').val(),order2:$('#order2').val(),order3:$('#order3').val(),order4:$('#order4').val(),order5:$('#order5').val(),reason:$('#reason').val(),gift:$('#gift').val(),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
+          headers: { Connection: "close", token:token, storename:_encode($('#storename').val()), address:_encode($('#address').val()), ward:_encode($('#ward').val()),district:_encode($('#district').val()),city:_encode($('#city').val()),phone:$('#phone').val(),tables:$('#tables').val(),est:$('#est').val(),order1:$('#order1').val(),order2:$('#order2').val(),order3:$('#order3').val(),order4:$('#order4').val(),order5:$('#order5').val(),reason:_encode($('#reason').val()),gift:_encode($('#gift').val()),deliverydate:_encode($('#deliverydate').val()),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
           httpMethod: "POST",
           chunkedMode: false
         };

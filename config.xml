@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.lavie.pgapp2" version="1.2.6" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.lavie.pgapp2" version="1.2.7" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Lavie Seller</name>
     <description>Seller Report Mobile App</description>
     <author email="phu.tranthe@hotmail.com" href="http://htm.vn">HTM</author>
@@ -12,7 +12,7 @@
     <preference name="Fullscreen" value="true" />
     
     <!--plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" /-->
-    <plugin name="cordova-plugin-camera" spec="~2.3.1" />
+    <plugin name="cordova-plugin-camera" spec="~2.4.1" />
     <!--plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
     <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1" />
     <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />

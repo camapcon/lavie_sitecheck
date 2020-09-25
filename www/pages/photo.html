@@ -33,6 +33,19 @@
             </li>
             <li class="item-content item-input">
               <div class="item-inner">
+                <div class="item-title item-label">Loại hình quán</div>
+                <div class="item-input-wrap">
+                  <select id="storekind">
+                      <option value="">Chọn...</option>
+                      {{#each kinds}}
+                        <option value="{{this}}">{{this}}</option>
+                      {{/each}}
+                  </select>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
                 <div class="item-title item-label">Địa chỉ</div>
                 <div class="item-input-wrap">
                   <input id="address" type="text">
@@ -265,7 +278,8 @@
        uploaded: 0,
        upload_total: 0,
        cities: this.$app.data.preload.cities,
-       gifts: this.$app.data.preload.gifts
+       gifts: this.$app.data.preload.gifts,
+       kinds: this.$app.data.preload.kinds
       }
     },
     // Component Methods
@@ -330,6 +344,10 @@
         self.upload_total = $('img[data-uri]').length;
         if($('#storename').val()==''){
           app.dialog.alert('Phải nhập tên quán', 'Báo lỗi');
+          return;
+        }
+        if($('#storekind').val()==''){
+          app.dialog.alert('Phải chọn loại hình quán', 'Báo lỗi');
           return;
         }
         if($('#address').val()==''){
@@ -411,7 +429,7 @@
           fileKey: "photo",
           fileName: fileURI.substr(fileURI.lastIndexOf('/') + 1),
           mimeType: "image/jpeg",
-          headers: { Connection: "close", token:token, storename:_encode($('#storename').val()), address:_encode($('#address').val()), ward:_encode($('#ward').val()),district:_encode($('#district').val()),city:_encode($('#city').val()),phone:$('#phone').val(),tables:$('#tables').val(),est:$('#est').val(),order1:$('#order1').val(),order2:$('#order2').val(),order3:$('#order3').val(),order4:$('#order4').val(),order5:$('#order5').val(),reason:_encode($('#reason').val()),gift:_encode($('#gift').val()),deliverydate:_encode($('#deliverydate').val()),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
+          headers: { Connection: "close", token:token, storename:_encode($('#storename').val()), storekind:_encode($('#storekind').val()), address:_encode($('#address').val()), ward:_encode($('#ward').val()),district:_encode($('#district').val()),city:_encode($('#city').val()),phone:$('#phone').val(),tables:$('#tables').val(),est:$('#est').val(),order1:$('#order1').val(),order2:$('#order2').val(),order3:$('#order3').val(),order4:$('#order4').val(),order5:$('#order5').val(),reason:_encode($('#reason').val()),gift:_encode($('#gift').val()),deliverydate:_encode($('#deliverydate').val()),nextqty:$('#nextqty').val(),nextdate:$('#nextdate').val() },
           httpMethod: "POST",
           chunkedMode: false
         };
